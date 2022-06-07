@@ -111,6 +111,7 @@ public class SearchActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), responseDto.getMessage(), Toast.LENGTH_SHORT).show();
 
                         // 여기서부터 데이터 리스트 어댑터로 붙임
+                        adapter.clear();
                         List<PostSearchDto> list = responseDto.getData();
                         for(PostSearchDto item : list) {
                             adapter.addItem(item);

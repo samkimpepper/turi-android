@@ -15,9 +15,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
@@ -36,6 +39,8 @@ public class PostActivity extends AppCompatActivity {
 
     private ImageButton imgBtn, btnMoveSearch, btnSubmit;
     private EditText edtContent, edtLocationInfo;
+    Spinner spinner;
+    String postType = null;
 
     HashMap<String, RequestBody> dataMap;
 
@@ -55,6 +60,8 @@ public class PostActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.PostbtnSubmit);
         edtContent = findViewById(R.id.edtContent);
         edtLocationInfo = findViewById(R.id.edtLocationInfo);
+
+        setSpinner();
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,11 +90,20 @@ public class PostActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(isLocationSelected) {
-                    dataMap.put("content", RequestBody.create(MediaType.parse("text/plain"), edtContent.toString()));
-                    dataMap.put("postType", RequestBody.create(MediaType.parse("text/plain"), "food"));
-                    dataMap.put("rating", RequestBody.create(MediaType.parse("text/plain"), "3"));
+                if(postType == null) {
+                    Toast.makeText(PostActivity.this, "게시글 카테고리를 선택하세요.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                if(!isLocationSelected) {
+                    Toast.makeText(PostActivity.this, "지도에서 장소를 선택하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                dataMap.put("content", RequestBody.create(MediaType.parse("text/plain"), edtContent.getText().toString()));
+                dataMap.put("postType", RequestBody.create(MediaType.parse("text/plain"), postType));
+                dataMap.put("rating", RequestBody.create(MediaType.parse("text/plain"), "3"));
+
 
                 MultipartBody.Part uploadFile = CommonUtil.forImageSend(getContentResolver(), selectedImage);
 
@@ -96,7 +112,8 @@ public class PostActivity extends AppCompatActivity {
                     public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
                         ResponseDto responseDto = response.body();
                         Log.d("Post 만들기 응답", "onResponse: " + responseDto.getMessage());
-                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "게시글 작성 완료", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
@@ -106,6 +123,39 @@ public class PostActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void setSpinner() {
+        spinner = findViewById(R.id.spinnerList);
+
+        ArrayAdapter spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.spinner, R.layout.spinner_item);
+        spinnerAdapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+
+        spinner.setAdapter(spinnerAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String value = adapterView.getItemAtPosition(i).toString();
+
+                if(value.equals("맛집")) {
+                    postType = "food";
+                } else if(value.equals("숙소")) {
+                    postType = "stay";
+                } else if(value.equals("놀거리")) {
+                    postType = "enjoy";
+                }
+
+                Log.d("Spinner Click", "onItemClick: " + postType);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
     @Override

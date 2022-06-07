@@ -2,6 +2,7 @@ package com.example.turibuildtest0405.util.turiapi;
 
 import com.example.turibuildtest0405.dto.ResponseDto;
 import com.example.turibuildtest0405.dto.UserRequestDto;
+import com.example.turibuildtest0405.dto.user.UserInfoDto;
 
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ public interface UserApi {
     Call<ResponseDto> signUp(@Body UserRequestDto.SignUp signup);
 
     @POST("user/login")
-    Call<ResponseDto> login(@Body UserRequestDto.Login login);
+    Call<ResponseDto.Data<UserInfoDto>> login(@Body UserRequestDto.Login login);
 
     @Multipart
     @PUT("user/update-info")

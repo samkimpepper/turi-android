@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RegisterActivity"
+    android:background="@drawable/back2">
+
+    <EditText
+        android:id="@+id/ed_rId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="297dp"
+        android:width="300dp"
+        android:height="43dp"
+        android:background="@drawable/round_edittext"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="13dp"
+        android:text="butter@naver.com"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/ed_rPwd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/ed_rName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:width="300dp"
+        android:height="43dp"
+        android:background="@drawable/round_edittext"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="13dp"
+        android:text="버터쿠키"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_rPwd" />
+
+    <Button
+        android:id="@+id/btn_rRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:width="300dp"
+        android:height="41dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/pretendardvariable"
+        android:text="sign up"
+        android:textColor="#ffffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_rName" />
+
+    <EditText
+        android:id="@+id/ed_rPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:width="300dp"
+        android:height="43dp"
+        android:background="@drawable/round_edittext"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="13dp"
+        android:text="hellobutter12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_rId" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

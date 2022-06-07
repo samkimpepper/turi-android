@@ -74,37 +74,7 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UserRequestDto.Login login = new UserRequestDto.Login();
-                login.setEmail(email);
-                login.setPassword(password);
-                dataService.userApi.login(login).enqueue(new Callback<ResponseDto>() {
-                    @Override
-                    public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
-                        Set<String> set = response.headers().names();
-                        Iterator<String> iter = set.iterator();
-                        while(iter.hasNext()) {
-                            String name = iter.next();
-                            System.out.println(name + ": " + response.headers().get(name));
-                        }
 
-                        System.out.println(response.body());
-                        ResponseDto responseDto = response.body();
-                        if(responseDto != null) {
-                            System.out.println(responseDto.getMessage());
-                        }
-                        finish();
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseDto> call, Throwable t) {
-
-                    }
-                });
-            }
-        });
     }
     private void signup(UserRequestDto.SignUp signup) {
         dataService.userApi.signUp(signup).enqueue(new Callback<ResponseDto>() {

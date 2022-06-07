@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="@drawable/back1">
+
+
+    <EditText
+        android:id="@+id/ed_lId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="354dp"
+        android:width="300dp"
+        android:height="43dp"
+        android:background="@drawable/round_edittext"
+        android:ems="10"
+        android:fontFamily="@font/pretendardvariable"
+        android:hint="ID"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="13dp"
+        android:text="butter@naver.com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_lLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:width="300dp"
+        android:height="41dp"
+        android:background="@drawable/round_button"
+        android:fontFamily="@font/pretendardvariable"
+        android:text="LOG IN"
+        android:textColor="#ffffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_lPwd" />
+
+    <EditText
+        android:id="@+id/ed_lPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:width="300dp"
+        android:height="43dp"
+        android:background="@drawable/round_edittext"
+        android:ems="10"
+        android:fontFamily="@font/pretendardvariable"
+        android:hint="Password"
+        android:inputType="textPersonName"
+        android:paddingLeft="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="13dp"
+        android:password="true"
+        android:text="hellobutter12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_lId" />
+
+    <Button
+        android:id="@+id/btn_lRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:width="42dp"
+        android:height="14dp"
+        android:color="@android:color/transparent"
+        android:fontFamily="@font/pretendardvariable"
+        android:text="sign up"
+        android:textSize="14dp"
+        android:textColor="#ff22577A"
+        android:background="#00ff0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_lLogin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

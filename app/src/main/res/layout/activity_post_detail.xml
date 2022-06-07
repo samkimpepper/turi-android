@@ -61,9 +61,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="abc@naver.com"
-            android:textSize="17dp"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="17dp" />
 
     </LinearLayout>
 
@@ -81,8 +82,8 @@
 
             <ImageView
                 android:id="@+id/DivPostImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -106,9 +107,9 @@
             <ListView
                 android:id="@+id/DlistView"
                 android:layout_width="350dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
 
                 />
         </LinearLayout>

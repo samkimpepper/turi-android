@@ -5,7 +5,7 @@
     android:id="@+id/linearLayoutDetailType"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ListItem">
+    >
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
             android:id="@+id/imageView7"
             android:layout_width="350dp"
             android:layout_height="110dp"
-            android:background="@drawable/round3" />
+            android:background="@drawable/round4" />
 
         <ImageView
             android:id="@+id/img_Icon"

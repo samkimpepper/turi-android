@@ -61,8 +61,10 @@ public class StayActivity extends AppCompatActivity implements MapView.CurrentLo
                     List<PostSearchDto> data = response.body().getData();
                     ArrayList<PostSearchDto> dataArrayList = new ArrayList<>();
                     dataArrayList.addAll(data);
+
                     Intent intent = new Intent(getApplicationContext(), SamePlacePostActivity.class);
                     intent.putExtra("PostSearchDto", dataArrayList);
+                    intent.putExtra("PlaceDto", place);
                     startActivity(intent);
                 }
 

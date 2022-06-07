@@ -1,6 +1,8 @@
 package com.example.turibuildtest0405.dto;
 
-public class PlaceDto {
+import java.io.Serializable;
+
+public class PlaceDto implements Serializable {
     private Long placeId;
     private String placeName;
     private String roadAddress;

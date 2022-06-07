@@ -8,62 +8,110 @@
     tools:context=".activity.SamePlacePostActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginBottom="600dp"
-        android:background="#22577A"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp">
-
-    </LinearLayout>
-
-    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="#22577A"
+                android:orientation="vertical">
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/Search_icon"
                 android:layout_width="314dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="45dp"
                 app:srcCompat="@drawable/search_icon" />
 
-            <ListView
-                android:id="@+id/SamelistView"
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="355dp"
+                android:layout_marginTop="7dp">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="46dp"
+                    android:layout_marginEnd="30dp"
+                    app:srcCompat="@drawable/back_white_icon" />
+
+                <ImageButton
+                    android:id="@+id/simgBtnSearch2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="57dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/search__blue_icon" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/Stayiv"
+                android:layout_width="411dp"
+                android:layout_height="279dp"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/pass_cion" />
+
+            <TextView
+                android:id="@+id/SametvPlaceeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="125dp"
+                android:text="경복궁"
+                android:textColor="@color/navy"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/SametvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="150dp"
+                android:text="연희로 10길 143"
+                android:textColor="@color/navy"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tvDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="194dp"
+                android:text="자세히 보기"
+                android:textColor="@color/navy"
+                android:textSize="10sp"
+                android:textStyle="normal" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="240dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <ListView
+                    android:id="@+id/SamelistView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
-        <ImageView
-            android:id="@+id/Stayiv"
-            android:layout_width="411dp"
-            android:layout_height="279dp"
-            app:srcCompat="@drawable/pass_cion" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        </FrameLayout>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="경복궁"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="132dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

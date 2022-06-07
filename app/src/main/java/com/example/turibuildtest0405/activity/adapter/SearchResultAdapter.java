@@ -76,4 +76,8 @@ public class SearchResultAdapter extends BaseAdapter {
     public void addItem(PostSearchDto dto) {
         data.add(dto);
     }
+
+    public void clear() {
+        data.clear();;
+    }
 }

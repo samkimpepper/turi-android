@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/SamelinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,38 +16,53 @@
             app:srcCompat="@drawable/passb_icon" />
 
         <ImageView
-            android:id="@+id/User_icon1"
-            android:layout_width="37dp"
-            android:layout_height="31dp"
+            android:id="@+id/SamepostImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="40dp"
-            app:srcCompat="@drawable/user_icon" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="45dp"
-            android:text="NAME@ID"
-            android:textColor="#FFFFFF" />
-
-        <ImageView
-            android:id="@+id/SmallBlue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="85dp"
-            android:layout_marginLeft="30dp"
             app:srcCompat="@drawable/spass_icon" />
 
         <TextView
             android:id="@+id/SametvContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#FFFFFF"
+            android:layout_marginLeft="160dp"
             android:layout_marginTop="85dp"
-            android:layout_marginLeft="160dp"/>
+            android:text="TextView"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="38dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/SameProfileImage"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:src="@drawable/cat"
+                app:civ_border_color="#adb5bd"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/SametvNickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:text="abc@naver.com"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+        </LinearLayout>
 
 
     </FrameLayout>

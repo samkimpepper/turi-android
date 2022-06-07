@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(getApplicationContext(), TestActivity.class);
-        startActivity(intent);
-
         imgbtnFood = (ImageButton)findViewById(R.id.imgbtn_Food);
         imgbtnSpot = (ImageButton)findViewById(R.id.imgbtn_Spot);
         imgbtnStay = (ImageButton)findViewById(R.id.imgbtn_Stay);

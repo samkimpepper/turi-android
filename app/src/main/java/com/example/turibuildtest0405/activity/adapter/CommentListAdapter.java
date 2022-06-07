@@ -43,7 +43,6 @@ public class CommentListAdapter extends BaseAdapter {
         if(view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_view_comment_item, viewGroup, false);
-
         }
 
         ivProfileImage = view.findViewById(R.id.ivCommentProfileImage);
