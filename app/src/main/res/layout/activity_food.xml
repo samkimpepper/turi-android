@@ -2,23 +2,22 @@
 <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/stay_panel"
+    android:id="@+id/food_panel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FoodActivity"
-    android:gravity="bottom"
     android:background="#00FFFFFF"
-    app:umanoDragView="@id/stay_drawer"
-    app:umanoPanelHeight="200dp"
+    android:gravity="bottom"
     app:umanoOverlay="true"
-    app:umanoShadowHeight="0dp">
+    app:umanoPanelHeight="200dp"
+    app:umanoShadowHeight="0dp"
+    tools:context=".activity.FoodActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/Stayiv"
+            android:id="@+id/Foodiv"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -30,7 +29,7 @@
             app:srcCompat="@drawable/back_blue_icon" />
 
         <ImageButton
-            android:id="@+id/imgbtn_Back"
+            android:id="@+id/FoodimgBtnBack"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginStart="30dp"
@@ -42,7 +41,7 @@
             app:srcCompat="@drawable/back_icon" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageViewF"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="46dp"
@@ -52,7 +51,6 @@
             app:srcCompat="@drawable/back_white_icon" />
 
         <ImageButton
-            android:id="@+id/SimgBtnSearch"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="57dp"
@@ -64,7 +62,6 @@
             app:srcCompat="@drawable/search__blue_icon" />
 
         <EditText
-            android:id="@+id/SedtSearch"
             android:layout_width="280dp"
             android:layout_height="31dp"
             android:layout_marginStart="7dp"
@@ -75,13 +72,13 @@
             android:textAlignment="center"
             android:textCursorDrawable="@drawable/cursor"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewF"
             app:layout_constraintHorizontal_bias="0.833"
-            app:layout_constraintStart_toEndOf="@+id/imgbtn_Back"
-            app:layout_constraintTop_toTopOf="parent"  />
+            app:layout_constraintStart_toEndOf="@+id/FoodimgBtnBack"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
-            android:id="@+id/StaymapView"
+            android:id="@+id/FoodmapView"
             android:layout_width="match_parent"
             android:layout_height="609dp"
             android:layout_marginTop="120dp"
@@ -93,22 +90,22 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:id="@+id/stay_drawer"
-        android:background="@drawable/round"
+        android:id="@+id/food_drawer"
         android:layout_width="match_parent"
         android:layout_height="700dp"
+        android:background="@drawable/round"
         android:orientation="vertical">
 
         <View
-            android:id="@+id/stay_swipe"
+            android:id="@+id/food_swipe"
             android:layout_width="60dp"
             android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_marginBottom="10dp" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/imageView6Food"
             android:layout_width="40dp"
             android:layout_height="5dp"
             android:layout_gravity="center"
@@ -124,17 +121,15 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/StvFood"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="FOOD"
                 android:textColor="#22577A"
                 android:textSize="10dp"
-                android:textStyle="normal" />
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/StvSpot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -144,17 +139,15 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/StvStay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="STAY"
                 android:textColor="#22577A"
-                android:textSize="13dp"
-                android:textStyle="bold" />
+                android:textSize="10dp"
+                android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/StvEnjoy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -162,6 +155,7 @@
                 android:textColor="#22577A"
                 android:textSize="10dp"
                 android:textStyle="normal" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -170,18 +164,14 @@
             android:orientation="vertical">
 
             <ListView
-                android:id="@+id/StaylistView"
-                android:scrollbars="none"
-                android:dividerHeight="0px"
-                android:divider="#FFFFFF"
+                android:id="@+id/FoodlistView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:divider="#FFFFFF"
+                android:dividerHeight="0px" />
         </LinearLayout>
 
-
     </LinearLayout>
-
-
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 

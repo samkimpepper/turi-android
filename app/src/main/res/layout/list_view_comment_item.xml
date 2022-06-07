@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,14 +30,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:text="닉네임" />
+                android:layout_marginLeft="10dp"
+                android:text="닉네임"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tvCommentContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:text="댓글 내용" />
+                android:text="댓글 내용"
+                android:textColor="#22577A"
+                android:textSize="12sp" />
         </LinearLayout>
 
     </LinearLayout>

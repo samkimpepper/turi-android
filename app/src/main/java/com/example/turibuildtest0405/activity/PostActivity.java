@@ -34,9 +34,8 @@ public class PostActivity extends AppCompatActivity {
     private DataService dataService;
     private PostRequestDto.Create dto;
 
-    private ImageButton imgBtn;
-    private Button btnMoveSearch, btnSubmit;
-    private EditText edtContent;
+    private ImageButton imgBtn, btnMoveSearch, btnSubmit;
+    private EditText edtContent, edtLocationInfo;
 
     HashMap<String, RequestBody> dataMap;
 
@@ -53,8 +52,9 @@ public class PostActivity extends AppCompatActivity {
 
         imgBtn = findViewById(R.id.imgBtnGallery);
         btnMoveSearch = findViewById(R.id.btnMoveSearch);
-        btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit = findViewById(R.id.PostbtnSubmit);
         edtContent = findViewById(R.id.edtContent);
+        edtLocationInfo = findViewById(R.id.edtLocationInfo);
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +123,8 @@ public class PostActivity extends AppCompatActivity {
             dataMap.put("jibunAddress", RequestBody.create(MediaType.parse("text/plain"), place.getAddress_name()));
             dataMap.put("x", RequestBody.create(MediaType.parse("text/plain"), place.getX()));
             dataMap.put("y", RequestBody.create(MediaType.parse("text/plain"), place.getY()));
+
+            edtLocationInfo.setText(place.getPlace_name() + ", " + place.getRoad_address_name());
 
             isLocationSelected = true;
         }

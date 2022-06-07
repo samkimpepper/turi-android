@@ -16,8 +16,9 @@
         app:srcCompat="@drawable/back2_blue_icon"
         tools:layout_editor_absoluteX="0dp" />
 
+
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButton4"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginStart="30dp"
@@ -41,18 +42,58 @@
         app:srcCompat="@drawable/set_icon" />
 
 
+    <EditText
+        android:id="@+id/edtContent"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/round4"
+        android:elevation="6dp"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:lines="20"
+        android:padding="20dp"
+        android:scrollbars="vertical"
+        android:textCursorDrawable="@drawable/cursor"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edtLocationInfo"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="115dp"
+        android:background="@drawable/round4"
+        android:elevation="6dp"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:lines="20"
+        android:padding="20dp"
+        android:scrollbars="vertical"
+        android:textCursorDrawable="@drawable/cursor"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="60dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/DivProfile"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/PostProfileImageView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/cat"
             app:civ_border_color="#adb5bd"
             app:civ_border_width="1dp" />
@@ -61,7 +102,10 @@
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="abc@naver.com" />
+            android:layout_marginLeft="10dp"
+            android:text="abc@naver.com"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -70,38 +114,37 @@
         android:id="@+id/imgBtnGallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:layout_editor_absoluteX="131dp" />
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    <EditText
-        android:id="@+id/edtContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:background="#f1f3f5"
-        android:cursorVisible="true"
-        android:ems="10"
 
-        android:inputType="textMultiLine|textNoSuggestions"
-        android:text="내용"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
+        android:id="@+id/PostbtnSubmit"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/post_icon" />
+
+    <ImageButton
         android:id="@+id/btnMoveSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:text="장소 추가"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="작성하기"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="80dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/post_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

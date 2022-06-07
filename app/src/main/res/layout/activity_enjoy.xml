@@ -1,10 +1,182 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/enjoy_panel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
+    android:gravity="bottom"
+    app:umanoDragView="@id/enjoy_drawer"
+    app:umanoOverlay="true"
+    app:umanoPanelHeight="200dp"
+    app:umanoShadowHeight="0dp"
     tools:context=".activity.EnjoyActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="760dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/back_blue_icon" />
+
+        <ImageButton
+            android:id="@+id/EimgBtnBack"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="56dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_icon" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_white_icon" />
+
+        <ImageButton
+            android:id="@+id/EimgBtnSearch"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="45dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/search__blue_icon" />
+
+        <EditText
+            android:id="@+id/EedtSearch"
+            android:layout_width="280dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textCursorDrawable="@drawable/cursor"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView9"
+            app:layout_constraintHorizontal_bias="0.833"
+            app:layout_constraintStart_toEndOf="@+id/EimgBtnBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/EnjoymapView"
+            android:layout_width="match_parent"
+            android:layout_height="609dp"
+            android:layout_marginTop="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/enjoy_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        android:background="@drawable/round"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/enjoy_swipe"
+            android:layout_width="60dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="40dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/EtvFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FOOD"
+                android:textColor="#22577A"
+                android:textSize="10dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/EtvSpot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SPOT"
+                android:textColor="#22577A"
+                android:textSize="10dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/EtvStay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="STAY"
+                android:textColor="#22577A"
+                android:textSize="10dp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/EtvEnjoy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ENJOY"
+                android:textColor="#22577A"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/EnjoylistView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#FFFFFF"
+                android:dividerHeight="0px"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </LinearLayout>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

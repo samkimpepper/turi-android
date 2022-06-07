@@ -8,9 +8,36 @@ import java.util.List;
 
 public class PostDetailDto implements Serializable {
     private String nickname;
+    private String profileImageUrl;
     private String content;
     private String postType;
+    private String postImageUrl;
+    private int rating;
     List<PostCommentDto> commentList;
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getPostImageUrl() {
+        return postImageUrl;
+    }
+
+    public void setPostImageUrl(String postImageUrl) {
+        this.postImageUrl = postImageUrl;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
     public List<PostCommentDto> getCommentList() {
         return commentList;

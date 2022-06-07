@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.activity.adapter.CommentListAdapter;
 import com.example.turibuildtest0405.dto.comment.PostCommentDto;
@@ -40,9 +41,11 @@ public class PostDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         PostDetailDto dto = (PostDetailDto) intent.getSerializableExtra("postDetailDto");
 
-        //Glide.with(this).load(dto.get)
+        Glide.with(this).load(dto.getProfileImageUrl()).into(ivProfileImage);
+        Glide.with(this).load(dto.getPostImageUrl()).into(ivPostImage);
         tvNickname.setText(dto.getNickname());
         tvContent.setText(dto.getContent());
+
 
         setCommentListAdapter(dto.getCommentList());
     }
