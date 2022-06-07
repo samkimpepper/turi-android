@@ -16,6 +16,12 @@
         android:theme="@style/Theme.TuriBuildTest0405"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.UserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SamePlacePostActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.PostDetailActivity"
             android:exported="false" />
         <activity

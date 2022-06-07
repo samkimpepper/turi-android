@@ -5,12 +5,11 @@ import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.dto.ResponseDto;
 import com.example.turibuildtest0405.dto.kakaomap.MapSearchKeywordResult;
 import com.example.turibuildtest0405.dto.post.PostRequestDto;
+import com.example.turibuildtest0405.util.CommonUtil;
 import com.example.turibuildtest0405.util.turiapi.DataService;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -52,7 +51,7 @@ public class PostActivity extends AppCompatActivity {
 
         dataMap = new HashMap<>();
 
-        imgBtn = findViewById(R.id.imgBtn);
+        imgBtn = findViewById(R.id.imgBtnGallery);
         btnMoveSearch = findViewById(R.id.btnMoveSearch);
         btnSubmit = findViewById(R.id.btnSubmit);
         edtContent = findViewById(R.id.edtContent);
@@ -87,17 +86,17 @@ public class PostActivity extends AppCompatActivity {
                 if(isLocationSelected) {
                     dataMap.put("content", RequestBody.create(MediaType.parse("text/plain"), edtContent.toString()));
                     dataMap.put("postType", RequestBody.create(MediaType.parse("text/plain"), "food"));
+                    dataMap.put("rating", RequestBody.create(MediaType.parse("text/plain"), "3"));
                 }
 
-                MultipartBody.Part uploadFile = forImageSend();
+                MultipartBody.Part uploadFile = CommonUtil.forImageSend(getContentResolver(), selectedImage);
 
-                dataService.postApi.create(uploadFile, dataMap).enqueue(new Callback<ResponseDto>() {
+                dataService.postApi.create(dataMap, uploadFile).enqueue(new Callback<ResponseDto>() {
                     @Override
                     public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
                         ResponseDto responseDto = response.body();
                         Log.d("Post 만들기 응답", "onResponse: " + responseDto.getMessage());
                         Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
-
                     }
 
                     @Override
@@ -128,8 +127,23 @@ public class PostActivity extends AppCompatActivity {
             isLocationSelected = true;
         }
     }
+    //filepath는 String 변수로 갤러리에서 이미지를 가져올 때 photoUri.getPath()를 통해 받아온다. File file = new File(filepath); InputStream inputStream = null; try { inputStream = getContext().getContentResolver().openInputStream(photoUri); }catch(IOException e) { e.printStackTrace(); } Bitmap bitmap = BitmapFactory.decodeStream(inputStream); ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream); RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray()); MultipartBody.Part uploadFile = MultipartBody.Part.createFormData("postImg", file.getName() ,requestBody);
 
-
+//    private void push() {
+//        //filepath는 String 변수로 갤러리에서 이미지를 가져올 때 photoUri.getPath()를 통해 받아온다.
+//        File file = new File(filepath);
+//        InputStream inputStream = null;
+//        try {
+//            inputStream = getContext().getContentResolver().openInputStream(photoUri);
+//        }catch(IOException e) {
+//            e.printStackTrace();
+//        }
+//        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream);
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray());
+//        MultipartBody.Part uploadFile = MultipartBody.Part.createFormData("postImg", file.getName() ,requestBody);
+//    }
 
     private MultipartBody.Part forImageSend() {
 

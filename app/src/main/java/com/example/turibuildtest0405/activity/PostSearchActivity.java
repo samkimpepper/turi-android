@@ -64,8 +64,9 @@ public class PostSearchActivity extends AppCompatActivity  {
 
         listView.setAdapter(adapter);
 
+
         MapView mapView = new MapView(this);
-        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.mapView);
+        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.SearchmapView);
         mapViewContainer.addView(mapView);
 
         btnSearch.setOnClickListener(new View.OnClickListener() {

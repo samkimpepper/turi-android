@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutDetailType"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ListItem">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="350dp"
+            android:layout_height="110dp"
+            android:background="@drawable/round3" />
+
+        <ImageView
+            android:id="@+id/img_Icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="15dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/back_blue_icon" />
+
+        <TextView
+            android:id="@+id/tv_MainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="17dp"
+            android:text="식당이름"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/tv_SubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="40dp"
+            android:text="한식, 무슨음식전문점"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/tv_Etc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="80dp"
+            android:text="자세히 보기"
+            android:textSize="8dp" />
+
+    </FrameLayout>
+
+</LinearLayout>

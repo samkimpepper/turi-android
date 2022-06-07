@@ -1,9 +1,22 @@
 package com.example.turibuildtest0405.util;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.io.File;
 
@@ -12,7 +25,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class CommonUtil {
-
 
     public static MultipartBody.Part forImageSend(ContentResolver contentResolver, Uri selectedImage) {
 
@@ -32,4 +44,7 @@ public class CommonUtil {
 
         return uploadFile;
     }
+
+
+
 }

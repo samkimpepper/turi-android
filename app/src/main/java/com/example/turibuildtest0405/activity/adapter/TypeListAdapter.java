@@ -9,19 +9,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.turibuildtest0405.R;
+import com.example.turibuildtest0405.dto.PlaceDto;
 import com.example.turibuildtest0405.dto.post.PostSearchDto;
 
 import java.util.ArrayList;
 
-public class SearchResultAdapter extends BaseAdapter {
+public class TypeListAdapter extends BaseAdapter {
     Context context;
-    ArrayList<PostSearchDto> data = new ArrayList<>();
-    DetailClickCallbackListener2 callbackListener;
+    ArrayList<PlaceDto> data = new ArrayList<>();
+    TypeDetailClickCallbackListener callbackListener;
 
-    TextView tvPlaceName, tvRoadAddress, tvPostType, tvContent;
+    TextView tvMainTitle, tvSubTitle, tvEtc;
 
-
-    public SearchResultAdapter(DetailClickCallbackListener2 callbackListener) {
+    public TypeListAdapter(TypeDetailClickCallbackListener callbackListener) {
         this.callbackListener = callbackListener;
     }
 
@@ -46,24 +46,19 @@ public class SearchResultAdapter extends BaseAdapter {
 
         if(view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_view_search_item2, viewGroup, false);
+            view = inflater.inflate(R.layout.list_view_type_item, viewGroup, false);
         }
 
-        tvPlaceName = view.findViewById(R.id.ItvPlaceName);
-        tvRoadAddress = view.findViewById(R.id.ItvRoadAddress);
-        tvPostType = view.findViewById(R.id.tvPostType);
-        tvContent = view.findViewById(R.id.tvContent);
+        tvMainTitle = view.findViewById(R.id.tv_MainTitle);
+        tvSubTitle = view.findViewById(R.id.tv_SubTitle);
+        tvEtc = view.findViewById(R.id.tv_Etc);
 
-        PostSearchDto dto = data.get(i);
+        PlaceDto place = data.get(i);
 
-        tvPlaceName.setText(dto.getPlaceName());
-        tvRoadAddress.setText(dto.getRoadAddress());
-        tvPostType.setText(dto.getPostType());
-        tvContent.setText(dto.getContent());
+        tvMainTitle.setText(place.getPlaceName());
+        tvSubTitle.setText(place.getRoadAddress());
 
-        // 디테일 클릭 이벤트 정의
-        LinearLayout detail = view.findViewById(R.id.linearLayoutDetail2);
-        detail.setOnClickListener(new View.OnClickListener() {
+        tvEtc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 callbackListener.callback(data.get(i));
@@ -73,7 +68,11 @@ public class SearchResultAdapter extends BaseAdapter {
         return view;
     }
 
-    public void addItem(PostSearchDto dto) {
-        data.add(dto);
+    public void addItem(PlaceDto place) {
+        data.add(place);
+    }
+
+    public void clear() {
+        data.clear();
     }
 }

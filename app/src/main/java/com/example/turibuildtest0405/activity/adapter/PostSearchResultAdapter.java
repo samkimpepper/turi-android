@@ -75,4 +75,8 @@ public class PostSearchResultAdapter extends BaseAdapter {
     public void addItem(MapSearchKeywordResult.Place place) {
         data.add(place);
     }
+
+    public void clear() {
+        data.clear();
+    }
 }

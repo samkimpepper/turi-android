@@ -1,6 +1,8 @@
 package com.example.turibuildtest0405.dto.comment;
 
-public class PostCommentDto {
+import java.io.Serializable;
+
+public class PostCommentDto implements Serializable {
     private String profileImageUrl;
     private String nickname;
     private String content;

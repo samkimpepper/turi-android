@@ -20,15 +20,15 @@ import retrofit2.http.Path;
 
 public interface PostApi {
     @Multipart
-    @POST("post")
-    Call<ResponseDto> create(@Part MultipartBody.Part profileImage, @PartMap HashMap<String, RequestBody> data);
+    @POST("post/create2")
+    Call<ResponseDto> create(@PartMap HashMap<String, RequestBody> data, @Part MultipartBody.Part file);
 
-
-    @GET("post/search")
+    @GET("post/search/{keyword}")
     Call<ResponseDto.DataList<PostSearchDto>> search(@Path("keyword")String keyword);
 
-    @GET("post")
+    @GET("post/{postId}")
     Call<ResponseDto.Data<PostDetailDto>> detailView(@Path("postId")Long postId);
 
-
+    @GET("post/place/{placeId}")
+    Call<ResponseDto.DataList<PostSearchDto>> getSamePlacePost(@Path("placeId") Long placeId);
 }

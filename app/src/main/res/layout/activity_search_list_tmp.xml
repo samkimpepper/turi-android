@@ -43,7 +43,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/Stayiv"
             android:layout_width="411dp"
             android:layout_height="279dp"
             app:srcCompat="@drawable/pass_cion" />

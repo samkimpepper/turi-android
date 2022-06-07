@@ -8,13 +8,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.activity.adapter.CommentListAdapter;
 import com.example.turibuildtest0405.dto.comment.PostCommentDto;
 import com.example.turibuildtest0405.dto.post.PostDetailDto;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class PostDetailActivity extends AppCompatActivity {
@@ -29,9 +27,9 @@ public class PostDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
 
-        ivProfileImage = findViewById(R.id.ivProfileImage);
-        ivPostImage = findViewById(R.id.ivPostImage);
-        tvNickname = findViewById(R.id.tvNickname);
+        ivProfileImage = findViewById(R.id.DivProfile);
+        ivPostImage = findViewById(R.id.DivPostImage);
+        tvNickname = findViewById(R.id.tv_email);
         tvContent = findViewById(R.id.DtvContent);
         listView = findViewById(R.id.DlistView);
 

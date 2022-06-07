@@ -2,29 +2,31 @@
 <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_panel"
+    android:id="@+id/stay_panel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.StayActivity"
     android:gravity="bottom"
     android:background="#00FFFFFF"
-    app:umanoDragView="@id/drawer"
+    app:umanoDragView="@id/stay_drawer"
     app:umanoPanelHeight="200dp"
     app:umanoOverlay="true"
     app:umanoShadowHeight="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#9C27B0">
+        android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/Stayiv"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="750dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="760dp"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/back_blue_icon" />
 
         <ImageButton
@@ -32,7 +34,7 @@
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="56dp"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +52,7 @@
             app:srcCompat="@drawable/back_white_icon" />
 
         <ImageButton
-            android:id="@+id/imgbtn_Search"
+            android:id="@+id/SimgBtnSearch"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="57dp"
@@ -62,30 +64,43 @@
             app:srcCompat="@drawable/search__blue_icon" />
 
         <EditText
-            android:id="@+id/ed_Search"
-            android:layout_width="301dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="47dp"
-            android:background="@drawable/search_box"
+            android:id="@+id/SedtSearch"
+            android:layout_width="280dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/border"
             android:ems="10"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textCursorDrawable="@drawable/cursor"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.833"
             app:layout_constraintStart_toEndOf="@+id/imgbtn_Back"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"  />
+
+        <RelativeLayout
+            android:id="@+id/StaymapView"
+            android:layout_width="match_parent"
+            android:layout_height="609dp"
+            android:layout_marginTop="120dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
-        android:id="@+id/drawer"
+        android:id="@+id/stay_drawer"
         android:background="@drawable/round"
         android:layout_width="match_parent"
         android:layout_height="700dp"
         android:orientation="vertical">
 
         <View
-            android:id="@+id/swipe"
+            android:id="@+id/stay_swipe"
             android:layout_width="60dp"
             android:layout_height="5dp"
             android:layout_marginTop="10dp"
@@ -101,34 +116,35 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_Food"
+                android:id="@+id/StvFood"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="FOOD"
                 android:textColor="#22577A"
-                android:textSize="13dp"
+                android:textSize="10dp"
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/tv_Spot"
+                android:id="@+id/StvSpot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="SPOT"
                 android:textColor="#22577A"
-                android:textSize="13dp"
+                android:textSize="10dp"
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/tv_Stay"
+                android:id="@+id/StvStay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -138,15 +154,30 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tv_Enjoy"
+                android:id="@+id/StvEnjoy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="ENJOY"
                 android:textColor="#22577A"
-                android:textSize="13dp"
+                android:textSize="10dp"
                 android:textStyle="normal" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/StaylistView"
+                android:scrollbars="none"
+                android:dividerHeight="0px"
+                android:divider="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
 
     </LinearLayout>
 

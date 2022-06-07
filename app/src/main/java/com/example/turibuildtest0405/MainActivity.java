@@ -15,6 +15,7 @@ import com.example.turibuildtest0405.activity.SettingActivity;
 import com.example.turibuildtest0405.activity.SpotActivity;
 import com.example.turibuildtest0405.activity.StayActivity;
 import com.example.turibuildtest0405.activity.TestActivity;
+import com.example.turibuildtest0405.activity.UserActivity;
 import com.example.turibuildtest0405.activity.UserInfoActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,71 +31,60 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TestActivity.class);
         startActivity(intent);
 
+        imgbtnFood = (ImageButton)findViewById(R.id.imgbtn_Food);
+        imgbtnSpot = (ImageButton)findViewById(R.id.imgbtn_Spot);
+        imgbtnStay = (ImageButton)findViewById(R.id.imgbtn_Stay);
+        imgbtnEnjoy = (ImageButton)findViewById(R.id.imgbtn_Enjoy);
+        imgbtnSetting = (ImageButton)findViewById(R.id.imgbtn_Setting);
+        imgbtnUser = (ImageButton)findViewById(R.id.imgbtn_User);
 
-
-        Button btnMoveUserInfo = findViewById(R.id.btnMoveUserInfo);
-        btnMoveUserInfo.setOnClickListener(new View.OnClickListener() {
+        imgbtnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivity(intent);
             }
         });
 
-//        imgbtnFood = (ImageButton)findViewById(R.id.imgbtn_Food);
-//        imgbtnSpot = (ImageButton)findViewById(R.id.imgbtn_Spot);
-//        imgbtnStay = (ImageButton)findViewById(R.id.imgbtn_Stay);
-//        imgbtnEnjoy = (ImageButton)findViewById(R.id.imgbtn_Enjoy);
-//        imgbtnSetting = (ImageButton)findViewById(R.id.imgbtn_Setting);
-//        imgbtnUser = (ImageButton)findViewById(R.id.imgbtn_User);
-//
-//        imgbtnSetting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        imgbtnUser.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Intent intent = new Intent(getApplicationContext(), UserActivity.class);
-//                //startActivity(intent);
-//            }
-//        });
-//
-//        imgbtnFood.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), FoodActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        imgbtnSpot.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), SpotActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        imgbtnStay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), StayActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        imgbtnEnjoy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), EnjoyActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        imgbtnUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imgbtnFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FoodActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imgbtnSpot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SpotActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imgbtnStay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), StayActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        imgbtnEnjoy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EnjoyActivity.class);
+                startActivity(intent);
+            }
+        });
 //
 //        Button btnMoveSearch = findViewById(R.id.btn_search_test);
 //        btnMoveSearch.setOnClickListener(new View.OnClickListener() {

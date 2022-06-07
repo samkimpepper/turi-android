@@ -17,6 +17,7 @@ public class RetrofitService {
     private static String BASE_URL = "http://3.88.102.16:8080/";
     public UserApi userApi;
     public PostApi postApi;
+    public PlaceApi placeApi;
     private static RetrofitService instance = null;
 
     private RetrofitService(Context context) {
@@ -34,6 +35,7 @@ public class RetrofitService {
 
         userApi = retrofitClient.create(UserApi.class);
         postApi = retrofitClient.create(PostApi.class);
+        placeApi = retrofitClient.create(PlaceApi.class);
     }
 
     public static RetrofitService getInstance(Context context) {
