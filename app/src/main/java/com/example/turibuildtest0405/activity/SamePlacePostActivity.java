@@ -75,7 +75,6 @@ public class SamePlacePostActivity extends AppCompatActivity {
             adapter.addItem(dto);
         }
         adapter.notifyDataSetChanged();
-
     }
 
     private void callDetailApi(Long postId) {

@@ -19,4 +19,9 @@ public class CommentRequestDto {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public CommentRequestDto(Long postId, String content) {
+        this.postId = postId;
+        this.content = content;
+    }
 }

@@ -24,7 +24,7 @@ import com.example.turibuildtest0405.util.turiapi.DataService;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText rId, rPwd, rName;
-    private Button rRegister;
+    private Button rRegister, btnMoveLogin;
     private AlertDialog dialog;
     private boolean validate = false;
 
@@ -34,6 +34,9 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Intent intent = new Intent(RegisterActivity.this, TestActivity.class);
+        startActivity(intent);
 
         dtService = new DataService(getApplicationContext());
 
@@ -119,6 +122,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+
+        btnMoveLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
 

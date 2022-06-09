@@ -7,13 +7,31 @@ import java.io.Serializable;
 import java.util.List;
 
 public class PostDetailDto implements Serializable {
+    private Long postId;
     private String nickname;
+    private String email;
     private String profileImageUrl;
     private String content;
     private String postType;
     private String postImageUrl;
     private int rating;
     List<PostCommentDto> commentList;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
 
     public String getProfileImageUrl() {
         return profileImageUrl;

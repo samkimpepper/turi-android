@@ -61,4 +61,8 @@ public class CommentListAdapter extends BaseAdapter {
     public void addItem(PostCommentDto dto) {
         data.add(dto);
     }
+
+    public void focus() {
+
+    }
 }

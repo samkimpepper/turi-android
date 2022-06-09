@@ -3,6 +3,7 @@ package com.example.turibuildtest0405.util.turiapi;
 import com.example.turibuildtest0405.dto.ResponseDto;
 import com.example.turibuildtest0405.dto.UserRequestDto;
 import com.example.turibuildtest0405.dto.user.UserInfoDto;
+import com.example.turibuildtest0405.dto.user.UserPasswordDto;
 
 import java.util.HashMap;
 
@@ -27,6 +28,12 @@ public interface UserApi {
     @Multipart
     @PUT("user/update-info")
     Call<ResponseDto> updateUserInfo(@Part MultipartBody.Part file, @PartMap HashMap<String, RequestBody> data);
+
+    @PUT("user/update-password")
+    Call<ResponseDto> updatePassword(@Body UserPasswordDto dto);
+
+    @GET("user/logout")
+    Call<ResponseDto> logout();
 
     @GET("user/session-test")
     Call<String> test();

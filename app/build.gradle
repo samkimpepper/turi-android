@@ -70,4 +70,7 @@ dependencies {
     // sliding panel
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
+    // StringUtil
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
 }

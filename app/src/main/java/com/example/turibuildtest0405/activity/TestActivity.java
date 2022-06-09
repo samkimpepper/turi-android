@@ -1,6 +1,8 @@
 package com.example.turibuildtest0405.activity;
 
 import com.example.turibuildtest0405.MainActivity;
+import com.example.turibuildtest0405.dto.post.PostDetailDto;
+import com.example.turibuildtest0405.dto.user.UserInfoDto;
 import com.example.turibuildtest0405.util.turiapi.DataService;
 import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.dto.ResponseDto;
@@ -33,7 +35,9 @@ import retrofit2.Response;
 public class TestActivity extends AppCompatActivity {
     DataService dataService;
 
-    Button button, btnLogin;
+    Button button, btnLogin, btnMoveDetail;
+
+    PostDetailDto detailDto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +45,19 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         dataService = new DataService(getApplicationContext());
-
-
         //getHashKey();
 
         button = findViewById(R.id.btn_test);
         btnLogin = findViewById(R.id.btn_login);
+        btnMoveDetail = findViewById(R.id.btn_post_detail);
+
+        btnMoveDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callDetailApi(1L);
+
+            }
+        });
 
         String email = "hungry123@naver.com";
         String password="buttercookie";
@@ -56,6 +67,13 @@ public class TestActivity extends AppCompatActivity {
         signup.setNickname(nickname);
         signup.setPassword(password);
         signup(signup);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                login();
+            }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +114,42 @@ public class TestActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void login() {
+        UserRequestDto.Login login = new UserRequestDto.Login();
+        login.setEmail("hungry123@naver.com");
+        login.setPassword("buttercookie");
+        dataService.userApi.login(login).enqueue(new Callback<ResponseDto.Data<UserInfoDto>>() {
+            @Override
+            public void onResponse(Call<ResponseDto.Data<UserInfoDto>> call, Response<ResponseDto.Data<UserInfoDto>> response) {
+                Toast.makeText(getApplicationContext(), "로그인 성공.. 아마도", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDto.Data<UserInfoDto>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void callDetailApi(Long postId) {
+        dataService.postApi.detailView(postId).enqueue(new Callback<ResponseDto.Data<PostDetailDto>>() {
+            @Override
+            public void onResponse(Call<ResponseDto.Data<PostDetailDto>> call, Response<ResponseDto.Data<PostDetailDto>> response) {
+                detailDto = response.body().getData();
+                Log.d("SamePlacePostActivity", "onResponse: " + detailDto.getContent());
+                Intent intent = new Intent(TestActivity.this, PostDetailActivity.class);
+                intent.putExtra("postDetailDto", detailDto);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDto.Data<PostDetailDto>> call, Throwable t) {
+
+            }
+        });
+    }
+
 //
 //    private void getHashKey(){
 //        PackageInfo packageInfo = null;

@@ -104,7 +104,6 @@ public class PostActivity extends AppCompatActivity {
                 dataMap.put("postType", RequestBody.create(MediaType.parse("text/plain"), postType));
                 dataMap.put("rating", RequestBody.create(MediaType.parse("text/plain"), "3"));
 
-
                 MultipartBody.Part uploadFile = CommonUtil.forImageSend(getContentResolver(), selectedImage);
 
                 dataService.postApi.create(dataMap, uploadFile).enqueue(new Callback<ResponseDto>() {

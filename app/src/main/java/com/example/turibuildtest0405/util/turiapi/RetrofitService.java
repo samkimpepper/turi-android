@@ -18,6 +18,7 @@ public class RetrofitService {
     public UserApi userApi;
     public PostApi postApi;
     public PlaceApi placeApi;
+    public CommentApi commentApi;
     private static RetrofitService instance = null;
 
     private RetrofitService(Context context) {
@@ -36,6 +37,7 @@ public class RetrofitService {
         userApi = retrofitClient.create(UserApi.class);
         postApi = retrofitClient.create(PostApi.class);
         placeApi = retrofitClient.create(PlaceApi.class);
+        commentApi = retrofitClient.create(CommentApi.class);
     }
 
     public static RetrofitService getInstance(Context context) {

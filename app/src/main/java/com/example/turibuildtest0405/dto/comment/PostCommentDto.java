@@ -7,6 +7,12 @@ public class PostCommentDto implements Serializable {
     private String nickname;
     private String content;
 
+    public PostCommentDto(String profileImageUrl, String nickname, String content) {
+        this.profileImageUrl = profileImageUrl;
+        this.nickname = nickname;
+        this.content = content;
+    }
+
     public String getProfileImageUrl() {
         return profileImageUrl;
     }

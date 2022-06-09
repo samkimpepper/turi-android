@@ -35,6 +35,7 @@
         android:layout_marginEnd="30dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/set_icon" />
@@ -90,12 +91,67 @@
             <TextView
                 android:id="@+id/DtvContent"
                 android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp
+"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:text="내용"
                 android:textColor="#22577A"
                 android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                >
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/divCommentMyProfile"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/cat"
+                    app:civ_border_color="#adb5bd"
+                    app:civ_border_width="1dp" />
+
+                <EditText
+                    android:id="@+id/edtCommentContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#000000"
+                    android:ems="10"
+                    android:hint="댓글 추가.."
+                    android:inputType="textPersonName"
+                    android:textCursorDrawable="@drawable/cursor2"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCommentSubmit"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/round_navy"
+                android:text="작성"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:visibility="invisible" />
 
         </LinearLayout>
 
@@ -109,7 +165,6 @@
                 android:layout_width="350dp"
                 android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"
 
                 />
         </LinearLayout>

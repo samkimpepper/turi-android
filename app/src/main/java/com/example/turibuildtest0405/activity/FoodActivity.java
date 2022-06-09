@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FoodActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener{
+public class FoodActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener{
     RetrofitService retrofitService;
     double x, y;
     List<PlaceDto> placeDtoList;
@@ -244,5 +245,61 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
         } else {
             startTracking();
         }
+    }
+
+    // 여기서부터 MapViewEventListener 오버라이드
+    @Override
+    public void onMapViewInitialized(MapView mapView) {
+
+    }
+
+    @Override
+    public void onMapViewCenterPointMoved(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewZoomLevelChanged(MapView mapView, int i) {
+
+    }
+
+    @Override
+    public void onMapViewSingleTapped(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDoubleTapped(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewLongPressed(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDragStarted(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MapPoint.GeoCoordinate geoCoordinate = mapPoint.getMapPointGeoCoord();
+                x = geoCoordinate.longitude;
+                y = geoCoordinate.latitude;
+                Log.d("*********", "onMapViewDragEnded: " + x + y);
+                //stopTracking();
+                callNearPlacesApi(mapView);
+            }
+        }, 2000);
+    }
+
+    @Override
+    public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
+
     }
 }
