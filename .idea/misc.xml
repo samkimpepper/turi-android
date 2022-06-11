@@ -34,6 +34,7 @@
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/activity_food.xml" value="0.2105978260869565" />
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/activity_login.xml" value="0.2953125" />
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/activity_main.xml" value="0.2734375" />
+        <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/activity_my_info.xml" value="0.25" />
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/activity_post.xml" value="0.30570652173913043" />
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/activity_post_detail.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/activity_post_tmp.xml" value="0.25" />
@@ -54,6 +55,7 @@
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/list_view_search_item2.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/list_view_type_item.xml" value="0.21014492753623187" />
         <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/spinner_item.xml" value="0.16894630192502533" />
+        <entry key="..\:/Users/glutw/AndroidStudioProjects/turi-android/app/src/main/res/layout/toolbar.xml" value="0.1636271529888551" />
       </map>
     </option>
   </component>

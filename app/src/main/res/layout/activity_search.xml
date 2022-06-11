@@ -11,27 +11,35 @@
     <RelativeLayout
         android:id="@+id/SearchmapView"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="200dp">
 
     </RelativeLayout>
 
     <EditText
         android:id="@+id/edtSearch"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="스타벅스" />
 
     <Button
         android:id="@+id/btnSearch"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="검색" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_button"
+        android:text="검색하기"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
 
     <ListView
         android:id="@+id/listViewSearch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
 
 </LinearLayout>

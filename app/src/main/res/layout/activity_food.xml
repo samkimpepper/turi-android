@@ -41,7 +41,7 @@
             app:srcCompat="@drawable/back_icon" />
 
         <ImageView
-            android:id="@+id/imageViewF"
+            android:id="@+id/FoodImgBtnSearch"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="46dp"
@@ -62,6 +62,7 @@
             app:srcCompat="@drawable/search__blue_icon" />
 
         <EditText
+            android:id="@+id/FoodEdtSearch"
             android:layout_width="280dp"
             android:layout_height="31dp"
             android:layout_marginStart="7dp"
@@ -72,7 +73,7 @@
             android:textAlignment="center"
             android:textCursorDrawable="@drawable/cursor"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewF"
+            app:layout_constraintEnd_toStartOf="@+id/FoodImgBtnSearch"
             app:layout_constraintHorizontal_bias="0.833"
             app:layout_constraintStart_toEndOf="@+id/FoodimgBtnBack"
             app:layout_constraintTop_toTopOf="parent" />

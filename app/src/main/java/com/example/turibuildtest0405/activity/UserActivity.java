@@ -44,7 +44,7 @@ public class UserActivity extends AppCompatActivity {
         ivMoveUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserActivity.this, UserInfoActivity.class);
+                Intent intent = new Intent(UserActivity.this, MyInfoActivity.class);
                 startActivity(intent);
             }
         });

@@ -18,11 +18,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.turibuildtest0405.R;
+import com.example.turibuildtest0405.activity.adapter.SearchResultAdapter;
 import com.example.turibuildtest0405.activity.adapter.TypeDetailClickCallbackListener;
 import com.example.turibuildtest0405.activity.adapter.TypeListAdapter;
 import com.example.turibuildtest0405.dto.PlaceDto;
@@ -35,6 +39,8 @@ import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +49,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FoodActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener{
+
     RetrofitService retrofitService;
     double x, y;
-    List<PlaceDto> placeDtoList;
     MapView mMapView;
+
+    EditText edtSearch;
+    ImageView btnSearch;
 
     SlidingUpPanelLayout layout;
     ListView listView;
@@ -82,11 +91,16 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
+        edtSearch = findViewById(R.id.FoodEdtSearch);
+        btnSearch = findViewById(R.id.FoodImgBtnSearch);
+        setSearchEvent();
+
         mMapView = new MapView(this);
 
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.FoodmapView);
         mapViewContainer.addView(mMapView);
         mMapView.setCurrentLocationEventListener(this);
+        mMapView.setMapViewEventListener(this);
 
         retrofitService = RetrofitService.getInstance(getApplicationContext());
 
@@ -103,6 +117,50 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
         listView.setAdapter(adapter);
     }
 
+    private void setSearchEvent() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String keyword = edtSearch.getText().toString();
+                if(StringUtils.isBlank(keyword)) {
+                    Toast.makeText(FoodActivity.this, "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                retrofitService.placeApi.getPlaceSearchResults(keyword, "food").enqueue(new Callback<ResponseDto.DataList<PlaceDto>>() {
+                    @Override
+                    public void onResponse(Call<ResponseDto.DataList<PlaceDto>> call, Response<ResponseDto.DataList<PlaceDto>> response) {
+                        ResponseDto.DataList<PlaceDto> responseDto = response.body();
+
+                        if(StringUtils.isEmpty(responseDto.getMessage())) {
+                            Toast.makeText(FoodActivity.this, "응답 실패 ㅠㅠ", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        List<PlaceDto> places = responseDto.getData();
+                        if(places.size() == 0) {
+                            Toast.makeText(FoodActivity.this, "검색 결과 없음", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        adapter.clear();
+                        for(PlaceDto place : places) {
+                            adapter.addItem(place);
+                        }
+                        adapter.notifyDataSetChanged();
+
+                        // 마커 만들고 지도도 그 쪽으로 이동해야함.
+                        createMarker(mMapView, places);
+                        moveMapPoint(places.get(0).getX(), places.get(0).getY());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseDto.DataList<PlaceDto>> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+    }
+
     private void startTracking() {
         mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
     }
@@ -116,10 +174,13 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
         retrofitService.placeApi.getNearPlaces(String.valueOf(x), String.valueOf(y), "food").enqueue(new Callback<ResponseDto.DataList<PlaceDto>>() {
             @Override
             public void onResponse(Call<ResponseDto.DataList<PlaceDto>> call, Response<ResponseDto.DataList<PlaceDto>> response) {
-                placeDtoList = response.body().getData();
-                Log.d("FoodActivity", "onResponse: " + response.body().getMessage() + placeDtoList.get(0).getPlaceName());
+                List<PlaceDto> placeDtoList = response.body().getData();
+                //Log.d("FoodActivity", "onResponse: " + response.body().getMessage() + placeDtoList.get(0).getPlaceName());
+                if(placeDtoList.size() == 0) {
+                    return;
+                }
 
-                createMarker(mapView);
+                createMarker(mapView, placeDtoList);
 
                 adapter.clear();
                 for(PlaceDto place : placeDtoList) {
@@ -135,7 +196,7 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
         });
     }
 
-    private void createMarker(MapView mapView) {
+    private void createMarker(MapView mapView, List<PlaceDto> placeDtoList) {
         ArrayList<MapPOIItem> markerArr = new ArrayList<>();
         for(PlaceDto place : placeDtoList) {
 
@@ -150,6 +211,11 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
         mapView.addPOIItems(markerArr.toArray(new MapPOIItem[markerArr.size()]));
     }
 
+    private void moveMapPoint(double longitude, double latitude) {
+        MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude);
+        mMapView.setMapCenterPoint(mapPoint, true);
+    }
+
     @Override
     public void onCurrentLocationUpdate(MapView mapView, MapPoint mapPoint, float v) {
         MapPoint.GeoCoordinate geoCoordinate = mapPoint.getMapPointGeoCoord();
@@ -159,7 +225,6 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
         //stopTracking();
         callNearPlacesApi(mapView);
         stopTracking();
-        // 이거 처음에만 하고 그만하려면 어떻게 해야할까..
     }
 
     private boolean checkLocationService() {
@@ -285,6 +350,7 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
 
     @Override
     public void onMapViewDragEnded(MapView mapView, MapPoint mapPoint) {
+        Log.d("####제발!!", "onMapViewDragEnded: ");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -300,6 +366,6 @@ public class FoodActivity extends AppCompatActivity implements MapView.CurrentLo
 
     @Override
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
-
+        Log.d("####제발!!", "onMapViewDragEnded: ");
     }
 }

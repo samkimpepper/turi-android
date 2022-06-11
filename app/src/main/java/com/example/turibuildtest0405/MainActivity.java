@@ -5,18 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.turibuildtest0405.activity.EnjoyActivity;
 import com.example.turibuildtest0405.activity.FoodActivity;
-import com.example.turibuildtest0405.activity.PostActivity;
 import com.example.turibuildtest0405.activity.SettingActivity;
 import com.example.turibuildtest0405.activity.SpotActivity;
 import com.example.turibuildtest0405.activity.StayActivity;
-import com.example.turibuildtest0405.activity.TestActivity;
 import com.example.turibuildtest0405.activity.UserActivity;
-import com.example.turibuildtest0405.activity.UserInfoActivity;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton imgbtnFood, imgbtnSpot, imgbtnStay, imgbtnEnjoy, imgbtnSetting, imgbtnUser;

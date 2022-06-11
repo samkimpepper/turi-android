@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
@@ -24,7 +25,8 @@ import com.example.turibuildtest0405.util.turiapi.DataService;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText rId, rPwd, rName;
-    private Button rRegister, btnMoveLogin;
+    private Button rRegister;
+    private TextView btnMoveLogin;
     private AlertDialog dialog;
     private boolean validate = false;
 
@@ -35,8 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Intent intent = new Intent(RegisterActivity.this, TestActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(RegisterActivity.this, TestActivity.class);
+//        startActivity(intent);
 
         dtService = new DataService(getApplicationContext());
 
@@ -119,12 +121,12 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponseDto> call, Throwable t) {
                         t.printStackTrace();
-
                     }
                 });
             }
         });
 
+        btnMoveLogin = findViewById(R.id.tvMoveLogin);
         btnMoveLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

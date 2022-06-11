@@ -17,7 +17,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,6 +37,8 @@ import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +49,10 @@ import retrofit2.Response;
 public class EnjoyActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener{
     RetrofitService retrofitService;
     double x, y;
-    List<PlaceDto> placeDtoList;
     MapView mMapView;
+
+    EditText edtSearch;
+    ImageView btnSearch;
 
     SlidingUpPanelLayout layout;
     ListView listView;
@@ -92,11 +99,64 @@ public class EnjoyActivity extends AppCompatActivity implements MapView.CurrentL
             permissionCheck();
         }
 
+        edtSearch = findViewById(R.id.EedtSearch);
+        btnSearch = findViewById(R.id.EnjoyBtnSearch);
+        setSearchEvent();
+
         layout = findViewById(R.id.enjoy_panel);
         listView = findViewById(R.id.EnjoylistView);
 
         adapter = new TypeListAdapter(callbackListener);
         listView.setAdapter(adapter);
+    }
+
+    private void setSearchEvent() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String keyword = edtSearch.getText().toString();
+                if(StringUtils.isBlank(keyword)) {
+                    Toast.makeText(EnjoyActivity.this, "검색어를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                retrofitService.placeApi.getPlaceSearchResults(keyword, "enjoy").enqueue(new Callback<ResponseDto.DataList<PlaceDto>>() {
+                    @Override
+                    public void onResponse(Call<ResponseDto.DataList<PlaceDto>> call, Response<ResponseDto.DataList<PlaceDto>> response) {
+                        ResponseDto.DataList<PlaceDto> responseDto = response.body();
+
+                        if(StringUtils.isEmpty(responseDto.getMessage())) {
+                            Toast.makeText(EnjoyActivity.this, "응답 실패 ㅠㅠ", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        List<PlaceDto> places = responseDto.getData();
+                        if(places.size() == 0) {
+                            Toast.makeText(EnjoyActivity.this, "검색 결과 없음", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        adapter.clear();
+                        for(PlaceDto place : places) {
+                            adapter.addItem(place);
+                        }
+                        adapter.notifyDataSetChanged();
+
+                        // 마커 만들고 지도도 그 쪽으로 이동해야함.
+                        createMarker(mMapView, places);
+                        moveMapPoint(places.get(0).getX(), places.get(0).getY());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseDto.DataList<PlaceDto>> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+    }
+
+    private void moveMapPoint(double longitude, double latitude) {
+        MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(latitude, longitude);
+        mMapView.setMapCenterPoint(mapPoint, true);
     }
 
     private void startTracking() {
@@ -111,10 +171,15 @@ public class EnjoyActivity extends AppCompatActivity implements MapView.CurrentL
         retrofitService.placeApi.getNearPlaces(String.valueOf(x), String.valueOf(y), "enjoy").enqueue(new Callback<ResponseDto.DataList<PlaceDto>>() {
             @Override
             public void onResponse(Call<ResponseDto.DataList<PlaceDto>> call, Response<ResponseDto.DataList<PlaceDto>> response) {
-                placeDtoList = response.body().getData();
+                List<PlaceDto> placeDtoList = response.body().getData();
+
+                if(placeDtoList.size() == 0) {
+                    Toast.makeText(EnjoyActivity.this, "검색 결과 없음", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Log.d("EnjoyActivity", "onResponse: " + response.body().getMessage() + placeDtoList.get(0).getPlaceName());
 
-                createMarker(mapView);
+                createMarker(mapView, placeDtoList);
 
                 adapter.clear();
                 for(PlaceDto place : placeDtoList) {
@@ -130,7 +195,7 @@ public class EnjoyActivity extends AppCompatActivity implements MapView.CurrentL
         });
     }
 
-    private void createMarker(MapView mapView) {
+    private void createMarker(MapView mapView, List<PlaceDto> placeDtoList) {
         ArrayList<MapPOIItem> markerArr = new ArrayList<>();
         for(PlaceDto place : placeDtoList) {
 

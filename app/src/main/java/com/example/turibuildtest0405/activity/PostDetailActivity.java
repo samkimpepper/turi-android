@@ -1,6 +1,6 @@
 package com.example.turibuildtest0405.activity;
 
-import androidx.appcompat.app.AlertDialog;
+import android.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,7 +20,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +52,9 @@ public class PostDetailActivity extends AppCompatActivity {
     EditText edtCommentContent;
     Button btnCommentSubmit;
 
+    ImageView ivComment, ivLike;
+    LinearLayout commentContainer;
+
     ImageButton imgBtnMenu;
 
     CommentListAdapter adapter;
@@ -72,6 +78,9 @@ public class PostDetailActivity extends AppCompatActivity {
         edtCommentContent = findViewById(R.id.edtCommentContent);
         btnCommentSubmit = findViewById(R.id.btnCommentSubmit);
         imgBtnMenu = findViewById(R.id.imgbtn_Menu);
+        ivComment = findViewById(R.id.ivComment);
+        ivLike = findViewById(R.id.ivLike);
+        commentContainer = findViewById(R.id.linearLayoutCommentWindow);
         listView = findViewById(R.id.DlistView);
 
         adapter = new CommentListAdapter();
@@ -95,15 +104,16 @@ public class PostDetailActivity extends AppCompatActivity {
         }
         if(checkAuthor(dto.getEmail())) {
             imgBtnMenu.setVisibility(View.VISIBLE);
+            setPopupMenu();
         }
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        ivComment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                hideKeyPad();
+            public void onClick(View view) {
+                commentContainer.setVisibility(View.VISIBLE);
+                edtCommentContent.requestFocus();
             }
-        }, 100);
+        });
 
         edtCommentContent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -111,7 +121,13 @@ public class PostDetailActivity extends AppCompatActivity {
                 if(b) {
                     btnCommentSubmit.setVisibility(View.VISIBLE);
                 } else {
-                    btnCommentSubmit.setVisibility(View.INVISIBLE);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            hideKeyPad();
+                        }
+                    }, 100);
                 }
             }
         });
@@ -143,7 +159,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
                     }
                 });
-
+                btnCommentSubmit.setVisibility(View.INVISIBLE);
                 edtCommentContent.clearFocus();
             }
         });
@@ -160,68 +176,62 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private boolean checkAuthor(String authorEmail) {
         SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
-        String email = preferences.getString("user", "");
+        String email = preferences.getString("email", "");
+        Log.d("Check Author****", "checkAuthor: " + email);
         if(StringUtils.isBlank(email) || !email.equals(authorEmail)) {
             return false;
         }
         return true;
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-
-        MenuInflater menuInflater = getMenuInflater();
-
-        if (v == imgBtnMenu) {
-            menuInflater.inflate(R.menu.post_menu, menu);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.post_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_delete:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage("정말로 삭제하시겠습니까?");
-                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+    private void setPopupMenu() {
+        imgBtnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+                getMenuInflater().inflate(R.menu.post_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        retrofitService.postApi.deletePost(postId).enqueue(new Callback<ResponseDto>() {
-                            @Override
-                            public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
-                                Toast.makeText(PostDetailActivity.this, "삭제가 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                                finish();
-                            }
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.menu_delete:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(PostDetailActivity.this);
+                                builder.setMessage("정말로 삭제하시겠습니까?");
+                                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        retrofitService.postApi.deletePost(postId).enqueue(new Callback<ResponseDto>() {
+                                            @Override
+                                            public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
+                                                Toast.makeText(PostDetailActivity.this, "삭제가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            }
 
-                            @Override
-                            public void onFailure(Call<ResponseDto> call, Throwable t) {
+                                            @Override
+                                            public void onFailure(Call<ResponseDto> call, Throwable t) {
 
-                            }
-                        });
+                                            }
+                                        });
+                                    }
+                                });
+                                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                                builder.show();
+                                break;
+                            case R.id.menu_modify:
+                                Toast.makeText(getApplicationContext(), "아직 구현 못함;;", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                        return false;
                     }
                 });
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                builder.show();
-                break;
-            case R.id.menu_modify:
-
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
+                popupMenu.show();
+            }
+        });
     }
 
     private void setFocus() {

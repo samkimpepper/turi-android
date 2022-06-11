@@ -13,6 +13,7 @@ import com.example.turibuildtest0405.util.turiapi.RetrofitService;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -117,12 +118,27 @@ public class TestActivity extends AppCompatActivity {
 
     private void login() {
         UserRequestDto.Login login = new UserRequestDto.Login();
-        login.setEmail("hungry123@naver.com");
-        login.setPassword("buttercookie");
+        login.setEmail("abcd12@naver.com");
+        login.setPassword("helloworld12");
         dataService.userApi.login(login).enqueue(new Callback<ResponseDto.Data<UserInfoDto>>() {
             @Override
             public void onResponse(Call<ResponseDto.Data<UserInfoDto>> call, Response<ResponseDto.Data<UserInfoDto>> response) {
                 Toast.makeText(getApplicationContext(), "로그인 성공.. 아마도", Toast.LENGTH_SHORT).show();
+                ResponseDto.Data<UserInfoDto> responseDto = response.body();
+                UserInfoDto userInfoDto;
+                if (response.isSuccessful() && responseDto != null) {
+
+                    // SharedPreferences로 사용자 정보 저장
+                    // 서버에서 로그인 성공할 때 이것저것 정보도 전달하도록 변경해야함
+                    userInfoDto = responseDto.getData();
+                    SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("email", userInfoDto.getEmail());
+                    editor.putString("nickname", userInfoDto.getNickname());
+                    editor.putString("profileImageUrl", userInfoDto.getProfileImageUrl());
+                    editor.commit();
+                    Log.d("SharedPreferences****", "onResponse: " + sharedPreferences.getString("email", "sibal"));
+                }
             }
 
             @Override

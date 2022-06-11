@@ -2,6 +2,7 @@ package com.example.turibuildtest0405.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -38,8 +39,12 @@ public class SettingActivity extends AppCompatActivity {
                 retrofitService.userApi.logout().enqueue(new Callback<ResponseDto>() {
                     @Override
                     public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
-
+                        if(response.body().getState() != 200) {
+                            return;
+                        }
                         Toast.makeText(getApplicationContext(), "로그아웃이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override
