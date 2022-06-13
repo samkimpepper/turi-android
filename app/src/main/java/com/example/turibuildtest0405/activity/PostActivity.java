@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -37,8 +38,10 @@ public class PostActivity extends AppCompatActivity {
     private DataService dataService;
     private PostRequestDto.Create dto;
 
-    private ImageButton imgBtn, btnMoveSearch, btnSubmit;
-    private EditText edtContent, edtLocationInfo;
+    private ImageButton imgBtn;
+    Button btnMoveSearch, btnSubmit;
+    private EditText edtContent;
+    TextView tvLocationInfo;
     Spinner spinner;
     String postType = null;
 
@@ -59,7 +62,7 @@ public class PostActivity extends AppCompatActivity {
         btnMoveSearch = findViewById(R.id.btnMoveSearch);
         btnSubmit = findViewById(R.id.PostbtnSubmit);
         edtContent = findViewById(R.id.edtContent);
-        edtLocationInfo = findViewById(R.id.edtLocationInfo);
+        tvLocationInfo = findViewById(R.id.tvLocationInfo);
 
         setSpinner();
 
@@ -173,7 +176,7 @@ public class PostActivity extends AppCompatActivity {
             dataMap.put("x", RequestBody.create(MediaType.parse("text/plain"), place.getX()));
             dataMap.put("y", RequestBody.create(MediaType.parse("text/plain"), place.getY()));
 
-            edtLocationInfo.setText(place.getPlace_name() + ", " + place.getRoad_address_name());
+            tvLocationInfo.setText(place.getPlace_name() + ", " + place.getRoad_address_name());
 
             isLocationSelected = true;
         }

@@ -1,25 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearLayoutDetail"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="350dp"
+    android:layout_height="120dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/round4"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvPlaceName"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="식당 이름" />
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="25dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvCategoryName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="한식" />
+        <TextView
+            android:id="@+id/tvPlaceName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="식당 이름"
+            android:textColor="@color/navy"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvRoadAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="서울시 송파구 송파로 12" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvCategoryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="2dp"
+            android:text="한식"
+            android:textColor="@color/navy"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvRoadAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="15dp"
+            android:text="서울시 송파구 송파로 12"
+            android:textColor="@color/navy"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</FrameLayout>

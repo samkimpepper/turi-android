@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -60,7 +61,7 @@ public class PostSearchResultAdapter extends BaseAdapter {
         tvCategoryName.setText(place.getCategory_name());
         tvRoadAddress.setText(place.getRoad_address_name());
 
-        LinearLayout detail = view.findViewById(R.id.linearLayoutDetail);
+        FrameLayout detail = view.findViewById(R.id.linearLayoutDetail);
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

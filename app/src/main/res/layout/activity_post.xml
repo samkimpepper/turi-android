@@ -61,25 +61,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/edtLocationInfo"
+    <TextView
+        android:id="@+id/tvLocationInfo"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="115dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="575dp"
         android:background="@drawable/round4"
         android:elevation="6dp"
         android:ems="10"
         android:gravity="top"
-        android:inputType="textMultiLine|textNoSuggestions"
-        android:lines="20"
-        android:padding="20dp"
-        android:scrollbars="vertical"
-        android:textCursorDrawable="@drawable/cursor"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/navy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerList"
@@ -146,29 +140,31 @@
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
 
-
-    <ImageButton
+    <Button
         android:id="@+id/PostbtnSubmit"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/transparent"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/round_navy"
         android:scaleType="fitCenter"
+        android:text="작성하기"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/post_icon" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageButton
+
+    <Button
         android:id="@+id/btnMoveSearch"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="80dp"
-        android:background="@android:color/transparent"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/round_navy"
         android:scaleType="fitCenter"
+        android:text="위치 검색"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/post_icon" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
