@@ -1,6 +1,7 @@
 package com.example.turibuildtest0405.util.turiapi;
 
 import com.example.turibuildtest0405.dto.ResponseDto;
+import com.example.turibuildtest0405.dto.post.MyPostDto;
 import com.example.turibuildtest0405.dto.post.PostDetailDto;
 import com.example.turibuildtest0405.dto.post.PostRequestDto;
 import com.example.turibuildtest0405.dto.post.PostSearchDto;
@@ -35,4 +36,7 @@ public interface PostApi {
 
     @DELETE("post/{postId}")
     Call<ResponseDto> deletePost(@Path("postId") Long postId);
+
+    @GET("post/my")
+    Call<ResponseDto.DataList<MyPostDto>> getMyPostList();
 }

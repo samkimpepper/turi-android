@@ -3,6 +3,7 @@ package com.example.turibuildtest0405.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +18,8 @@ import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.dto.ResponseDto;
 import com.example.turibuildtest0405.util.CommonUtil;
 import com.example.turibuildtest0405.util.turiapi.RetrofitService;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 
@@ -45,6 +48,13 @@ public class MyInfoActivity extends AppCompatActivity {
         ivProfileImage = findViewById(R.id.userivProfile2);
         btnSubmit = findViewById(R.id.UbtnSubmit);
 
+        SharedPreferences preferences = getSharedPreferences("user", MODE_PRIVATE);
+        edtNickname.setText(preferences.getString("nickname", ""));
+        String profileImageUrl = preferences.getString("profileImage", "");
+        if(StringUtils.isNotEmpty(profileImageUrl)) {
+            ivProfileImage.setImageBitmap(CommonUtil.resizeImage(getApplicationContext(), profileImageUrl, 150));
+        }
+
         ivProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +71,7 @@ public class MyInfoActivity extends AppCompatActivity {
                 RequestBody nicknameParsed = RequestBody.create(MediaType.parse("text/plain"), nickname);
                 HashMap<String, RequestBody> data = new HashMap<>();
                 data.put("nickname", nicknameParsed);
-                MultipartBody.Part uploadImage = CommonUtil.forImageSend(getContentResolver(), selectedImage);
+                MultipartBody.Part uploadImage = CommonUtil.forImageSend2(getContentResolver(), selectedImage);
 
                 retrofitService.userApi.updateUserInfo(uploadImage, data).enqueue(new Callback<ResponseDto>() {
                     @Override

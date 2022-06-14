@@ -33,85 +33,103 @@
         app:srcCompat="@drawable/set_icon" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="100dp"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/userivProfile"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:src="@drawable/cat"
-            app:civ_border_color="#adb5bd"
-            app:civ_border_width="1dp" />
-
-        <TextView
-            android:id="@+id/usertvNickname"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
 
-            android:layout_weight="1"
-            android:text="abc@naver.com"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200dp"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="7dp"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/ivProfileEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userivProfile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/profilerec" />
+                android:src="@drawable/cat"
+                app:civ_border_color="#adb5bd"
+                app:civ_border_width="1dp" />
 
             <TextView
-                android:id="@+id/tvProfileEditUser"
+                android:id="@+id/usertvNickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal"
-                android:text="프로필 편집"
-                android:textColor="@color/navy" />
-        </FrameLayout>
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="7dp"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/ivNewPost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/profilerec" />
+                android:text="abc@naver.com"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/tvProfileEditUser2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal"
-                android:text="게시글 작성"
-                android:textColor="@color/navy" />
-        </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="7dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/ivProfileEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/profilerec" />
+
+                <TextView
+                    android:id="@+id/tvProfileEditUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_horizontal"
+                    android:text="프로필 편집"
+                    android:textColor="@color/navy" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="7dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/ivNewPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/profilerec" />
+
+                <TextView
+                    android:id="@+id/tvProfileEditUser2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_horizontal"
+                    android:text="게시글 작성"
+                    android:textColor="@color/navy" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:columnWidth="80dp"
+            android:numColumns="3"
+            android:paddingBottom="10dp"
+            android:verticalSpacing="10dp" />
+
     </LinearLayout>
 
 </FrameLayout>

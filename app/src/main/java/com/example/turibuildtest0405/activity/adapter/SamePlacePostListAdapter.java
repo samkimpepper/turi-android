@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.dto.post.PostSearchDto;
+import com.example.turibuildtest0405.util.CommonUtil;
 
 import java.util.ArrayList;
 
@@ -62,7 +63,8 @@ public class SamePlacePostListAdapter extends BaseAdapter {
 
         tvNickname.setText(post.getNickname());
         tvContent.setText(post.getContent());
-        Glide.with(view).load(post.getPostImageUrl()).into(ivPostImage);
+        ivPostImage.setImageBitmap(CommonUtil.resizeImage(context, post.getPostImageUrl(), 90));
+        //Glide.with(view).load(post.getPostImageUrl()).into(ivPostImage);
         Log.d("SameAdapterPostImage", "getView: " + post.getPostImageUrl());
         if(post.getProfileImageUrl() != null) {
             Glide.with(view).load(post.getProfileImageUrl()).into(ivProfileImage);

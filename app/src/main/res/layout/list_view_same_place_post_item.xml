@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/SamepostImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="85dp"
             app:srcCompat="@drawable/spass_icon" />

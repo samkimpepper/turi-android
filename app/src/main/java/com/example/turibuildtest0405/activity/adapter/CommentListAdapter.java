@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.dto.comment.PostCommentDto;
+import com.example.turibuildtest0405.util.CommonUtil;
 
 import java.util.ArrayList;
 
@@ -51,7 +52,8 @@ public class CommentListAdapter extends BaseAdapter {
 
         PostCommentDto dto = data.get(i);
 
-        Glide.with(view).load(dto.getProfileImageUrl()).into(ivProfileImage);
+        ivProfileImage.setImageBitmap(CommonUtil.resizeImage(context, dto.getProfileImageUrl(), 90));
+        //Glide.with(view).load(dto.getProfileImageUrl()).into(ivProfileImage);
         tvNickname.setText(dto.getNickname());
         tvContent.setText(dto.getContent());
 
