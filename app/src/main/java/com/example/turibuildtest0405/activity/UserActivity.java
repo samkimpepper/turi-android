@@ -23,6 +23,7 @@ import com.example.turibuildtest0405.util.turiapi.RetrofitService;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -70,13 +71,23 @@ public class UserActivity extends AppCompatActivity {
         tvNickname.setText(preferences.getString("nickname", "실패"));
         String profileImageUrl = preferences.getString("profileImage", "");
         if(StringUtils.isNotEmpty(profileImageUrl)) {
-            ivProfile.setImageBitmap(CommonUtil.resizeImage(getApplicationContext(), profileImageUrl, 60));
+            //ivProfile.setImageBitmap(CommonUtil.resizeImage(getApplicationContext(), profileImageUrl, 60));
+            Glide.with(ivProfile).load(preferences.getString("profileImage", "실패"));
+
         }
-        //Glide.with(ivProfile).load(preferences.getString("profileImage", "실패"));
 
         gridView = findViewById(R.id.gridView);
         adapter = new ImageGridAdapter(callbackListener);
-        callMyPostApi();
+        gridView.setAdapter(adapter);
+        new Thread() {
+            public void run() {
+                try {
+                    callMyPostApi();
+                } catch(Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }.start();
 
         ivMovePost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +110,7 @@ public class UserActivity extends AppCompatActivity {
         retrofitService.postApi.getMyPostList().enqueue(new Callback<ResponseDto.DataList<MyPostDto>>() {
             @Override
             public void onResponse(Call<ResponseDto.DataList<MyPostDto>> call, Response<ResponseDto.DataList<MyPostDto>> response) {
+                assert response.body() != null;
                 List<MyPostDto> postList = response.body().getData();
                 if(postList.size() == 0) {
                     return;

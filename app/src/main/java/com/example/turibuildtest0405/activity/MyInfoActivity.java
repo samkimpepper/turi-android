@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.turibuildtest0405.R;
 import com.example.turibuildtest0405.dto.ResponseDto;
 import com.example.turibuildtest0405.util.CommonUtil;
@@ -52,7 +53,8 @@ public class MyInfoActivity extends AppCompatActivity {
         edtNickname.setText(preferences.getString("nickname", ""));
         String profileImageUrl = preferences.getString("profileImage", "");
         if(StringUtils.isNotEmpty(profileImageUrl)) {
-            ivProfileImage.setImageBitmap(CommonUtil.resizeImage(getApplicationContext(), profileImageUrl, 150));
+            //ivProfileImage.setImageBitmap(CommonUtil.resizeImage(getApplicationContext(), profileImageUrl, 150));
+            Glide.with(getApplicationContext()).load(profileImageUrl).into(ivProfileImage);
         }
 
         ivProfileImage.setOnClickListener(new View.OnClickListener() {

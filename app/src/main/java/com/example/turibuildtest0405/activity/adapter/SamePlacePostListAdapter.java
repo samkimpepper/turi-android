@@ -63,8 +63,8 @@ public class SamePlacePostListAdapter extends BaseAdapter {
 
         tvNickname.setText(post.getNickname());
         tvContent.setText(post.getContent());
-        ivPostImage.setImageBitmap(CommonUtil.resizeImage(context, post.getPostImageUrl(), 90));
-        //Glide.with(view).load(post.getPostImageUrl()).into(ivPostImage);
+        //ivPostImage.setImageBitmap(CommonUtil.resizeImage(context, post.getPostImageUrl(), 90));
+        Glide.with(view).load(post.getPostImageUrl()).into(ivPostImage);
         Log.d("SameAdapterPostImage", "getView: " + post.getPostImageUrl());
         if(post.getProfileImageUrl() != null) {
             Glide.with(view).load(post.getProfileImageUrl()).into(ivProfileImage);

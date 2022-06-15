@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,9 +37,8 @@ import retrofit2.Response;
 
 public class PostActivity extends AppCompatActivity {
     private DataService dataService;
-    private PostRequestDto.Create dto;
 
-    private ImageButton imgBtn;
+    private ImageView imgBtn;
     Button btnMoveSearch, btnSubmit;
     private EditText edtContent;
     TextView tvLocationInfo;

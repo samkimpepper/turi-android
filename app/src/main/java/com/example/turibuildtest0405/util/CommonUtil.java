@@ -21,6 +21,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.load.engine.Resource;
+
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -107,33 +110,26 @@ public class CommonUtil {
         return resizeBitmap;
     }
 
-    public static Bitmap resizeImage(Context context, String src, int resize) {
+    public static Bitmap resizeImage(Resource img, String src, int resize) {
         Bitmap resizeBitmap = null;
 
         BitmapFactory.Options options = new BitmapFactory.Options();
+
         try {
             URL url = new URL(src);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setDoInput(true);
             connection.connect();
-            InputStream input = connection.getInputStream();
+            //InputStream input = connection.getInputStream();
+            InputStream input = new BufferedInputStream(connection.getInputStream());
+            input.mark(input.available());
             //Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            options.inJustDecodeBounds = true;
             BitmapFactory.decodeStream(input, null, options);
 
-            int width = options.outWidth;
-            int height = options.outHeight;
-            int samplesize = 1;
+            options.inSampleSize = calculateInSampleSize(options, resize, resize);
 
-            while(true) {
-                if(width / 2 < resize || height / 2 < resize) {
-                    break;
-                }
-                width /= 2;
-                height /= 2;
-                samplesize *= 2;
-            }
-
-            options.inSampleSize = samplesize;
+            options.inJustDecodeBounds = false;
             Bitmap bitmap = BitmapFactory.decodeStream(input, null, options);
             resizeBitmap = bitmap;
         } catch(FileNotFoundException ex) {
@@ -145,6 +141,29 @@ public class CommonUtil {
 
         }
         return resizeBitmap;
+    }
+
+    public static
+    int calculateInSampleSize( BitmapFactory.Options options, int reqWidth, int reqHeight)
+    {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+        return inSampleSize;
     }
 
 

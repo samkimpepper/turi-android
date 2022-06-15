@@ -52,8 +52,8 @@ public class CommentListAdapter extends BaseAdapter {
 
         PostCommentDto dto = data.get(i);
 
-        ivProfileImage.setImageBitmap(CommonUtil.resizeImage(context, dto.getProfileImageUrl(), 90));
-        //Glide.with(view).load(dto.getProfileImageUrl()).into(ivProfileImage);
+        //ivProfileImage.setImageBitmap(CommonUtil.resizeImage(context, dto.getProfileImageUrl(), 90));
+        Glide.with(view).load(dto.getProfileImageUrl()).into(ivProfileImage);
         tvNickname.setText(dto.getNickname());
         tvContent.setText(dto.getContent());
 

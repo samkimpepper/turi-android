@@ -7,7 +7,7 @@
     tools:context=".activity.PostDetailActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_post_bg"
         android:layout_width="wrap_content"
         android:layout_height="891dp"
         android:layout_marginBottom="100dp"

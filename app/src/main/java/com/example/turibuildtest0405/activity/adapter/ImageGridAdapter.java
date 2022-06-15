@@ -14,6 +14,7 @@ import com.example.turibuildtest0405.activity.UserActivity;
 import com.example.turibuildtest0405.dto.post.MyPostDto;
 import com.example.turibuildtest0405.util.CommonUtil;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class ImageGridAdapter extends BaseAdapter {
@@ -55,8 +56,17 @@ public class ImageGridAdapter extends BaseAdapter {
 
         MyPostDto dto = data.get(i);
 
-        //Glide.with(view).load(dto.getPostImageUrl()).into(ivPostImage);
-        ivPostImage.setImageBitmap(CommonUtil.resizeImage(context.getApplicationContext(), dto.getPostImageUrl(), 100));
+        Glide.with(view).load(dto.getPostImageUrl()).into(ivPostImage);
+//        new Thread() {
+//            public void run() {
+//                try {
+//                    ivPostImage.setImageBitmap(CommonUtil.resizeImage(context.getApplicationContext(), dto.getPostImageUrl(), 100));
+//                } catch (Exception ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//        }.start();
+
 
         LinearLayout detail = view.findViewById(R.id.linearLayoutMyPost);
         detail.setOnClickListener(new View.OnClickListener() {
