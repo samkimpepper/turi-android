@@ -8,13 +8,16 @@ import com.example.turibuildtest0405.dto.post.PostRequestDto;
 import com.example.turibuildtest0405.util.CommonUtil;
 import com.example.turibuildtest0405.util.turiapi.DataService;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -69,9 +72,25 @@ public class PostActivity extends AppCompatActivity {
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyPad();
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
                 startActivityForResult(intent, 200);
+            }
+        });
+
+        edtContent.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(!b) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            hideKeyPad();
+                        }
+                    }, 100);
+                }
             }
         });
 
@@ -79,6 +98,7 @@ public class PostActivity extends AppCompatActivity {
         btnMoveSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyPad();
                 Intent intent = new Intent(getApplicationContext(), PostSearchActivity.class);
                 startActivityForResult(intent, 201);
             }
@@ -87,6 +107,7 @@ public class PostActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyPad();
 
                 if(selectedImage == null) {
                     Toast.makeText(PostActivity.this, "사진을 선택하세요.", Toast.LENGTH_SHORT).show();
@@ -139,6 +160,7 @@ public class PostActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                hideKeyPad();
                 String value = adapterView.getItemAtPosition(i).toString();
 
                 if(value.equals("맛집")) {
@@ -162,7 +184,7 @@ public class PostActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        hideKeyPad();
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 200 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             selectedImage = data.getData();
@@ -179,6 +201,14 @@ public class PostActivity extends AppCompatActivity {
             tvLocationInfo.setText(place.getPlace_name() + ", " + place.getRoad_address_name());
 
             isLocationSelected = true;
+        }
+    }
+
+    private void hideKeyPad() {
+        View view = getCurrentFocus();
+        if(view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
     //filepath는 String 변수로 갤러리에서 이미지를 가져올 때 photoUri.getPath()를 통해 받아온다. File file = new File(filepath); InputStream inputStream = null; try { inputStream = getContext().getContentResolver().openInputStream(photoUri); }catch(IOException e) { e.printStackTrace(); } Bitmap bitmap = BitmapFactory.decodeStream(inputStream); ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); bitmap.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayOutputStream); RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray()); MultipartBody.Part uploadFile = MultipartBody.Part.createFormData("postImg", file.getName() ,requestBody);

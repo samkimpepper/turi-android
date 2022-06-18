@@ -12,7 +12,9 @@
         android:id="@+id/iv_post_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/back2_blue_icon" />
+        app:srcCompat="@drawable/back2_blue_icon"
+        android:windowSoftInputMode="adjustPan"
+        />
 
 
     <LinearLayout
